@@ -12,7 +12,7 @@
 #define YellowLed           'D' , 6
 #define GreenLed            'D' , 7
 
-volatile unsigned char seconds = 1;
+volatile signed char seconds = 60;
 volatile unsigned char ten_msecond = 0;
 volatile unsigned char mpx = 0;
 volatile unsigned char buz_on = 0;
@@ -60,33 +60,33 @@ int main(void)
 			BUZZER_vTurnOff('C' , 0);
 			
 			if(ten_msecond >= 100){
-				seconds++;
+				seconds--;
 				ten_msecond = 0;
 				
-				if(seconds >= 61){
-					seconds = 1;
+				if(seconds <= 0){
+					seconds = 60;
 				}
 				else{}
 			}
 			else{}
 				
 				
-			if(seconds >= 1 && seconds <= 25){
+			if(seconds >= 36 && seconds <= 60){
 				LED_vTurnOn(RedLed);
 				LED_vTurnOff(YellowLed);
 				LED_vTurnOff(GreenLed);
 			}
-			else if((seconds >= 26 && seconds <= 30)){
+			else if((seconds >= 31 && seconds <= 35)){
 				LED_vTurnOn(RedLed);
 				LED_vTurnOn(YellowLed);
 				LED_vTurnOff(GreenLed);
 			}
-			else if(seconds >= 31 && seconds <= 55){
+			else if(seconds >= 6 && seconds <= 30){
 				LED_vTurnOn(GreenLed);
 				LED_vTurnOff(RedLed);
 				LED_vTurnOff(YellowLed);
 			}
-			else if(seconds >= 56 && seconds <= 60){
+			else if(seconds >= 1 && seconds <= 5){
 				LED_vTurnOn(GreenLed);
 				LED_vTurnOn(YellowLed);
 				LED_vTurnOff(RedLed);
